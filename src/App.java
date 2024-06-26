@@ -153,7 +153,7 @@ public class App {
         System.out.println(nomeDaRimuovere + " rimosso");
     }
 
-    public static void sistemaDiVotazione(){
+    public static void sistemaDiVotazione() throws Exception{
         SistemaElettorale sistemaElettorale = new SistemaElettorale();
 
         Candidato candidato1 = new Candidato("Giorgia", "Tettoni");
@@ -178,7 +178,7 @@ public class App {
         sistemaElettorale.stampaRisultati();
     }
 
-    public static void SistemadiPrenotazioneHotel(){
+    public static void SistemadiPrenotazioneHotel() throws Exception{
         SistemaPrenotazioni sistema = new SistemaPrenotazioni();
 
         Camera camera1 = new Camera(101, "Singola");
@@ -209,7 +209,7 @@ public class App {
         sistema.stampaPrenotazioni();
     }
 
-    public static void impiegato_Manager(){
+    public static void impiegato_Manager() throws Exception{
         Impiegato[] impiegati = new Impiegato[3];
         
         impiegati[0] = new Impiegato("Pippo", "Baudo", 1500);
@@ -229,7 +229,7 @@ public class App {
         }
     }
 
-    public static void sistemaDiPrenotazioneAlberghiera(){
+    public static void sistemaDiPrenotazioneAlberghiera() throws Exception{
         SistemaPrenotazioneAlberghiera sistema = new SistemaPrenotazioneAlberghiera();
 
         CameraAlbergo singola1 = new CameraSingola(666);
