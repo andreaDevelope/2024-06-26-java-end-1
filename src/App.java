@@ -1,9 +1,9 @@
 public class App {
     public static void main(String[] args) throws Exception {
 
-        // presentazione();
-        // studente();
-        // contoBancario();
+        presentazione();
+        studente();
+        contoBancario();
         elencoTelefonico();
     }
 
@@ -44,7 +44,7 @@ public class App {
         teatro.stampaPosti();
     }
 
-    public static void studente() {
+    public static void studente() throws Exception {
         Studente studente = new Studente("Mario", "Rossi", "12345");
 
         try {
@@ -76,7 +76,7 @@ public class App {
         studente.stampaDettagli();
     }
 
-    public static void contoBancario(){
+    public static void contoBancario() throws Exception{
         ContoBancario conto = new ContoBancario("Gino Vagino", 500.0);
 
         try {
@@ -110,7 +110,7 @@ public class App {
         System.out.println("Saldo finale: " + conto.getSaldo());
     }
 
-    public static void elencoTelefonico() {
+    public static void elencoTelefonico() throws Exception {
         ElencoTelefonico elencoTelefonico = new ElencoTelefonico();
 
         try {
