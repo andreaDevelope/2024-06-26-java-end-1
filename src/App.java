@@ -1,12 +1,41 @@
 public class App {
     public static void main(String[] args) throws Exception {
 
-        test();
+        presentazione();
     }
 
-    public static void test() {
+    public static void presentazione() throws Exception {
+        Prenotazione teatro = new Prenotazione(); // Creazione di un teatro con 50 posti
 
-        System.out.println("Hello, World!");
+        try {
+            teatro.prenota(100);
+            System.out.println("Posto 10 prenotato con successo.");
+        } catch (IllegalArgumentException | IllegalStateException e) {
+            System.out.println("Prenotazione del posto 100 fallita: " + e.getMessage());
+        }
+
+        try {
+            teatro.annullaPrenotazione(10);
+            System.out.println("Prenotazione del posto 10 annullata con successo.");
+        } catch (IllegalArgumentException | IllegalStateException e) {
+            System.out.println("Annullamento della prenotazione del posto 10 fallita: " + e.getMessage());
+        }
+
+        try {
+            if (teatro.isDisponibile(20)) {
+                System.out.println("Il posto 20 è disponibile.");
+            } else {
+                System.out.println("Il posto 20 è già prenotato.");
+            }
+        } catch (IllegalArgumentException e) {
+            System.out.println("Verifica disponibilità del posto 20 fallita: " + e.getMessage());
+        }
+
+        if (teatro.ciSonoPostiDisponibili()) {
+            System.out.println("Ci sono posti disponibili.");
+        } else {
+            System.out.println("Nessun posto disponibile.");
+        }
     }
 }
 
