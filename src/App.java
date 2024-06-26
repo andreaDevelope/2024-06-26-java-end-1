@@ -1,13 +1,13 @@
 public class App {
     public static void main(String[] args) throws Exception {
 
-        // presentazione();
-        // studente();
+        presentazione();
+        studente();
         contoBancario();
     }
 
     public static void presentazione() throws Exception {
-        Prenotazione teatro = new Prenotazione(); // Creazione di un teatro con 50 posti
+        Prenotazione teatro = new Prenotazione();
 
         try {
             teatro.prenota(10);
@@ -17,20 +17,21 @@ public class App {
         }
 
         try {
+            if (teatro.isDisponibile(10)) {
+                System.out.println("Il posto 10 è disponibile.");
+            } else {
+                System.out.println("Il posto 10 è già prenotato.");
+            }
+        } catch (IllegalArgumentException e) {
+            System.out.println("Verifica disponibilità del posto 10 fallita: " + e.getMessage());
+        }
+
+        // se commento annullaPrenotazione() in ciSonoPostiDisponibili il numero 10 risulta prenotato
+        try {
             teatro.annullaPrenotazione(10);
             System.out.println("Prenotazione del posto 10 annullata con successo.");
         } catch (IllegalArgumentException | IllegalStateException e) {
             System.out.println("Annullamento della prenotazione del posto 10 fallita: " + e.getMessage());
-        }
-
-        try {
-            if (teatro.isDisponibile(20)) {
-                System.out.println("Il posto 20 è disponibile.");
-            } else {
-                System.out.println("Il posto 20 è già prenotato.");
-            }
-        } catch (IllegalArgumentException e) {
-            System.out.println("Verifica disponibilità del posto 20 fallita: " + e.getMessage());
         }
 
         if (teatro.ciSonoPostiDisponibili()) {
@@ -53,6 +54,13 @@ public class App {
         }
 
         try {
+            studente.aggiungiVoto(10);
+            System.out.println("Voto 10 aggiunto con successo.");
+        } catch (IllegalArgumentException e) {
+            System.out.println("Errore nell'aggiunta del voto: " + e.getMessage());
+        }
+
+        try {
             studente.aggiungiVoto(-1);
         } catch (IllegalArgumentException e) {
             System.out.println("Errore nell'aggiunta del voto: " + e.getMessage());
@@ -64,7 +72,6 @@ public class App {
             System.out.println("Errore nell'aggiunta del voto: " + e.getMessage());
         }
 
-        // Stampa i dettagli dello studente
         studente.stampaDettagli();
     }
 
