@@ -5,7 +5,9 @@ public class App {
         // studente();
         // contoBancario();
         // elencoTelefonico();
-        sistemaDiVotazione();
+        // sistemaDiVotazione();
+        // SistemadiPrenotazioneHotel();
+        impiegato_Manager();
     }
 
     public static void presentazione() throws Exception {
@@ -153,14 +155,12 @@ public class App {
     public static void sistemaDiVotazione(){
         SistemaElettorale sistemaElettorale = new SistemaElettorale();
 
-        // Registra i candidati
         Candidato candidato1 = new Candidato("Giorgia", "Tettoni");
         Candidato candidato2 = new Candidato("Giuseppe", "Duca");
 
         sistemaElettorale.registraCandidato(candidato1);
         sistemaElettorale.registraCandidato(candidato2);
 
-        // Elettori votano
         Elettore elettore1 = new Elettore("Lupo", "Lucio");
         Elettore elettore2 = new Elettore("Pippo", "Baudo");
 
@@ -177,8 +177,59 @@ public class App {
         sistemaElettorale.stampaRisultati();
     }
 
+    public static void SistemadiPrenotazioneHotel(){
+        SistemaPrenotazioni sistema = new SistemaPrenotazioni();
 
+        Camera camera1 = new Camera(101, "Singola");
+        Camera camera2 = new Camera(102, "Doppia");
+
+        sistema.aggiungiCamera(camera1);
+        
+        sistema.aggiungiCamera(camera2);
+
+        Cliente cliente1 = new Cliente("Pippo", "Baudo", "123");
+        Cliente cliente2 = new Cliente("Lupo", "Lucio", "456");
+
+        try {
+            sistema.effettuaPrenotazione(cliente1, camera1);
+
+            sistema.effettuaPrenotazione(cliente2, camera2);
+
+            sistema.modificaPrenotazione(cliente1, camera2);
+
+            sistema.cancellaPrenotazione(cliente2);
+
+            sistema.modificaPrenotazione(cliente1, camera2);
+            sistema.stampaPrenotazioni();
+        } catch (IllegalArgumentException e) {
+            System.out.println("Errore: " + e.getMessage());
+        }
+
+        sistema.stampaPrenotazioni();
+    }
+
+    public static void impiegato_Manager(){
+        Impiegato[] impiegati = new Impiegato[3];
+        
+        impiegati[0] = new Impiegato("Pippo", "Baudo", 1500);
+        impiegati[1] = new Manager("Lupo", "Lucio", 2000, 800);
+        impiegati[2] = new Impiegato("Gino", "Vagino", 1200);
+
+        try {
+            for (Impiegato impiegato : impiegati) {
+                impiegato.aumentaSalario(20);
+            }
+        } catch (Exception e) {
+            System.out.println("Errore nell'aumento del salario: " + e.getMessage());
+        }
+
+        for (Impiegato impiegato : impiegati) {
+            System.out.println(impiegato);
+        }
+    }
 }
+
+
 
 
 
