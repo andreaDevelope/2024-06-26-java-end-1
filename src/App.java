@@ -1,10 +1,11 @@
 public class App {
     public static void main(String[] args) throws Exception {
 
-        presentazione();
-        studente();
-        contoBancario();
-        elencoTelefonico();
+        // presentazione();
+        // studente();
+        // contoBancario();
+        // elencoTelefonico();
+        sistemaDiVotazione();
     }
 
     public static void presentazione() throws Exception {
@@ -148,7 +149,37 @@ public class App {
         elencoTelefonico.rimuoviContatto(nomeDaRimuovere);
         System.out.println(nomeDaRimuovere + " rimosso");
     }
+
+    public static void sistemaDiVotazione(){
+        SistemaElettorale sistemaElettorale = new SistemaElettorale();
+
+        // Registra i candidati
+        Candidato candidato1 = new Candidato("Giorgia", "Tettoni");
+        Candidato candidato2 = new Candidato("Giuseppe", "Duca");
+
+        sistemaElettorale.registraCandidato(candidato1);
+        sistemaElettorale.registraCandidato(candidato2);
+
+        // Elettori votano
+        Elettore elettore1 = new Elettore("Lupo", "Lucio");
+        Elettore elettore2 = new Elettore("Pippo", "Baudo");
+
+        try {
+            elettore1.vota(candidato1, sistemaElettorale);
+            elettore2.vota(candidato2, sistemaElettorale);
+            // seconda votazione di candidato1 dovrebbe dare errore 
+            elettore1.vota(candidato1, sistemaElettorale); 
+        } catch (IllegalArgumentException e) {
+            System.out.println("votazione illegale " + e.getMessage());
+        }
+
+        
+        sistemaElettorale.stampaRisultati();
+    }
+
+
 }
+
 
 
 /**
@@ -195,4 +226,49 @@ public class App {
  * contatti. Gestisci eventuali eccezioni relative all'inserimento di numeri di
  * telefono non validi.
  * 
+ * ---------------------------------------------------------------------------
+ * 
+ * POMERIGGIO
+ * 
+ * ---------------------------------------------------------------------------
+ * 
+ * ES5: Sistema di Votazione
+ * 
+ * Crea classi per Candidato e Elettore, dove ogni Elettore può votare per un
+ * Candidato. Implementa un meccanismo usando mappe per tenere traccia dei voti
+ * ricevuti da ogni candidato. Assicurati di gestire le eccezioni per casi come
+ * doppi voti o voti a candidati non esistenti.
+ * 
+ * ---------------------------------------------------------------------------
+ * 
+ * ES6: Sistema di Prenotazione Hotel
+ * 
+ * Definisci classi per Camera, Cliente, e Prenotazione. Utilizza una mappa per
+ * associare clienti a prenotazioni e una lista di camere disponibili.
+ * Implementa metodi per effettuare, modificare e cancellare prenotazioni,
+ * assicurandoti di gestire eccezioni come camere non disponibili o
+ * cancellazioni tardive.
+ * 
+ * ---------------------------------------------------------------------------
+ * 
+ * ES7: Impiegato e Manager
+ * 
+ * Crea una classe Impiegato con attributi come nome, salario e metodi per
+ * aumentaSalario(int percentuale). Deriva da questa una classe Manager che
+ * aggiunge l'attributo bonus. Il metodo aumentaSalario del manager dovrebbe
+ * considerare anche il bonus nell'aumento. Mostra come puoi utilizzare il
+ * polimorfismo per gestire diversi tipi di impiegati in un array di tipo
+ * Impiegato.
+ * 
+ * ---------------------------------------------------------------------------
+ * 
+ * ES8: Sistema di Prenotazione Alberghiera
+ * 
+ * Progetta una classe astratta CameraAlbergo con metodi come calcolaCosto() e
+ * numeroLetti(). Deriva da questa diverse classi specifiche come CameraSingola,
+ * CameraDoppia e Suite. Implementa calcolaCosto in modo diverso per ogni tipo
+ * di camera. Utilizza una collezione per gestire tutte le camere disponibili in
+ * un albergo.
+ * 
+ * ---------------------------------------------------------------------------
  */
