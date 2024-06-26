@@ -114,11 +114,11 @@ public class App {
         ElencoTelefonico elencoTelefonico = new ElencoTelefonico();
 
         try {
-            Contatto contatto1 = new Contatto("Gigi Ilbullo", "0123456789");
+            Contatto contatto1 = new Contatto("Gigi Ilbullo", " ");
             elencoTelefonico.aggiungiContatto(contatto1);
             System.out.println("Contatto aggiunto: " + contatto1.getNome() + ", " + contatto1.getNumeroTelefono());
         } catch (IllegalArgumentException e) {
-            System.out.println("Errore nell'aggiunta del contatto: " + e.getMessage());
+            System.out.println("Errore nell'aggiunta del contatto: " +  e.getMessage());
         }
 
         try {
