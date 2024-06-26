@@ -1,9 +1,10 @@
 public class App {
     public static void main(String[] args) throws Exception {
 
-        presentazione();
-        studente();
-        contoBancario();
+        // presentazione();
+        // studente();
+        // contoBancario();
+        elencoTelefonico();
     }
 
     public static void presentazione() throws Exception {
@@ -11,27 +12,27 @@ public class App {
 
         try {
             teatro.prenota(10);
-            System.out.println("Posto 10 prenotato con successo.");
+            System.out.println("Posto prenotato con successo.");
         } catch (IllegalArgumentException | IllegalStateException e) {
-            System.out.println("Prenotazione del posto 10 fallita: " + e.getMessage());
+            System.out.println("Prenotazione del posto fallita: " + e.getMessage());
         }
 
         try {
             if (teatro.isDisponibile(10)) {
-                System.out.println("Il posto 10 è disponibile.");
+                System.out.println("Il posto è disponibile.");
             } else {
-                System.out.println("Il posto 10 è già prenotato.");
+                System.out.println("Il posto è già prenotato.");
             }
         } catch (IllegalArgumentException e) {
-            System.out.println("Verifica disponibilità del posto 10 fallita: " + e.getMessage());
+            System.out.println("Verifica disponibilità del posto fallita: " + e.getMessage());
         }
 
         // se commento annullaPrenotazione() in ciSonoPostiDisponibili il numero 10 risulta prenotato
         try {
             teatro.annullaPrenotazione(10);
-            System.out.println("Prenotazione del posto 10 annullata con successo.");
+            System.out.println("Prenotazione del posto annullata con successo.");
         } catch (IllegalArgumentException | IllegalStateException e) {
-            System.out.println("Annullamento della prenotazione del posto 10 fallita: " + e.getMessage());
+            System.out.println("Annullamento della prenotazione del posto fallita: " + e.getMessage());
         }
 
         if (teatro.ciSonoPostiDisponibili()) {
@@ -48,14 +49,14 @@ public class App {
 
         try {
             studente.aggiungiVoto(8);
-            System.out.println("Voto 8 aggiunto con successo.");
+            System.out.println("Voto aggiunto con successo.");
         } catch (IllegalArgumentException e) {
             System.out.println("Errore nell'aggiunta del voto: " + e.getMessage());
         }
 
         try {
             studente.aggiungiVoto(10);
-            System.out.println("Voto 10 aggiunto con successo.");
+            System.out.println("Voto aggiunto con successo.");
         } catch (IllegalArgumentException e) {
             System.out.println("Errore nell'aggiunta del voto: " + e.getMessage());
         }
@@ -107,6 +108,45 @@ public class App {
         }
 
         System.out.println("Saldo finale: " + conto.getSaldo());
+    }
+
+    public static void elencoTelefonico() {
+        ElencoTelefonico elencoTelefonico = new ElencoTelefonico();
+
+        try {
+            Contatto contatto1 = new Contatto("Gigi Ilbullo", "0123456789");
+            elencoTelefonico.aggiungiContatto(contatto1);
+            System.out.println("Contatto aggiunto: " + contatto1.getNome() + ", " + contatto1.getNumeroTelefono());
+        } catch (IllegalArgumentException e) {
+            System.out.println("Errore nell'aggiunta del contatto: " + e.getMessage());
+        }
+
+        try {
+            Contatto contatto2 = new Contatto("Lupo Lucio", "9876543210");
+            elencoTelefonico.aggiungiContatto(contatto2);
+            System.out.println("Contatto aggiunto: " + contatto2.getNome() + ", " + contatto2.getNumeroTelefono());
+        } catch (IllegalArgumentException e) {
+            System.out.println("Errore nell'aggiunta del contatto: " + e.getMessage());
+        }
+        try {
+            Contatto contatto2 = new Contatto("Pippo Baudo", "123456789");
+            elencoTelefonico.aggiungiContatto(contatto2);
+            System.out.println("Contatto aggiunto: " + contatto2.getNome() + ", " + contatto2.getNumeroTelefono());
+        } catch (IllegalArgumentException e) {
+            System.out.println("Errore nell'aggiunta del contatto: " + e.getMessage());
+        }
+
+        String nomeDaCercare = "Pippo Baudo";
+        Contatto risultatoRicerca = elencoTelefonico.cercaContatto(nomeDaCercare);
+        if (risultatoRicerca != null) {
+            System.out.println("Contatto trovato : " + risultatoRicerca.getNome() + "- telefono: " + risultatoRicerca.getNumeroTelefono());
+        } else {
+            System.out.println(nomeDaCercare + " non c'è");
+        }
+
+        String nomeDaRimuovere = "Lupo Lucio";
+        elencoTelefonico.rimuoviContatto(nomeDaRimuovere);
+        System.out.println(nomeDaRimuovere + " rimosso");
     }
 }
 
