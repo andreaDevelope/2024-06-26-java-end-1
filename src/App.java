@@ -139,7 +139,7 @@ public class App {
         String nomeDaCercare = "Pippo Baudo";
         Contatto risultatoRicerca = elencoTelefonico.cercaContatto(nomeDaCercare);
         if (risultatoRicerca != null) {
-            System.out.println("Contatto trovato : " + risultatoRicerca.getNome() + "- telefono: " + risultatoRicerca.getNumeroTelefono());
+            System.out.println("Contatto trovato : " + risultatoRicerca.getNome() + " telefono: " + risultatoRicerca.getNumeroTelefono());
         } else {
             System.out.println(nomeDaCercare + " non c'è");
         }

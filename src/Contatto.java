@@ -1,12 +1,12 @@
 public class Contatto {
     private String nome;
     private String numeroTelefono;
-    private int numTelDim;
+    private int numTelDimMax;
 
     public Contatto(String nome, String numeroTelefono) {
         setNome(nome);
         setNumeroTelefono(numeroTelefono);
-        numTelDim = 13;
+        numTelDimMax = 13;
     }
 
     public String getNome() {
@@ -29,6 +29,6 @@ public class Contatto {
     }
 
     private boolean isValidNumeroTelefono(String numeroTelefono) {
-        return numeroTelefono.length() > 0 || numeroTelefono.length() < numTelDim ; 
+        return numeroTelefono.length() > 0 || numeroTelefono.length() < numTelDimMax ; 
     }
 }
