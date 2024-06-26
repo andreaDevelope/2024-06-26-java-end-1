@@ -2,7 +2,8 @@ public class App {
     public static void main(String[] args) throws Exception {
 
         // presentazione();
-        studente();
+        // studente();
+        contoBancario();
     }
 
     public static void presentazione() throws Exception {
@@ -66,7 +67,42 @@ public class App {
         // Stampa i dettagli dello studente
         studente.stampaDettagli();
     }
+
+    public static void contoBancario(){
+        ContoBancario conto = new ContoBancario("Gino Vagino", 500.0);
+
+        try {
+            conto.deposita(500.0);
+            System.out.println("Deposito effettuato con successo. Saldo attuale: " + conto.getSaldo());
+        } catch (IllegalArgumentException e) {
+            System.out.println("Errore nel deposito: " + e.getMessage());
+        }
+
+        try {
+            conto.preleva(200.0);
+            System.out.println("Prelievo effettuato con successo. Saldo attuale: " + conto.getSaldo());
+        } catch (IllegalArgumentException | IllegalStateException e) {
+            System.out.println("Errore nel prelievo: " + e.getMessage());
+        }
+
+        try {
+            conto.preleva(2000.0);
+            System.out.println("Prelievo effettuato con successo. Saldo attuale: " + conto.getSaldo());
+        } catch (IllegalArgumentException | IllegalStateException e) {
+            System.out.println("Errore nel prelievo: " + e.getMessage());
+        }
+
+        try {
+            conto.preleva(-50.0);
+            System.out.println("Prelievo effettuato con successo. Saldo attuale: " + conto.getSaldo());
+        } catch (IllegalArgumentException | IllegalStateException e) {
+            System.out.println("Errore nel prelievo: " + e.getMessage());
+        }
+
+        System.out.println("Saldo finale: " + conto.getSaldo());
+    }
 }
+
 
 /**
  * TODO:
