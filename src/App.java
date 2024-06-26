@@ -1,17 +1,18 @@
 public class App {
     public static void main(String[] args) throws Exception {
 
-        presentazione();
+        // presentazione();
+        studente();
     }
 
     public static void presentazione() throws Exception {
         Prenotazione teatro = new Prenotazione(); // Creazione di un teatro con 50 posti
 
         try {
-            teatro.prenota(100);
+            teatro.prenota(10);
             System.out.println("Posto 10 prenotato con successo.");
         } catch (IllegalArgumentException | IllegalStateException e) {
-            System.out.println("Prenotazione del posto 100 fallita: " + e.getMessage());
+            System.out.println("Prenotazione del posto 10 fallita: " + e.getMessage());
         }
 
         try {
@@ -36,6 +37,34 @@ public class App {
         } else {
             System.out.println("Nessun posto disponibile.");
         }
+
+        teatro.stampaPosti();
+    }
+
+    public static void studente() {
+        Studente studente = new Studente("Mario", "Rossi", "12345");
+
+        try {
+            studente.aggiungiVoto(8);
+            System.out.println("Voto 8 aggiunto con successo.");
+        } catch (IllegalArgumentException e) {
+            System.out.println("Errore nell'aggiunta del voto: " + e.getMessage());
+        }
+
+        try {
+            studente.aggiungiVoto(-1);
+        } catch (IllegalArgumentException e) {
+            System.out.println("Errore nell'aggiunta del voto: " + e.getMessage());
+        }
+
+        try {
+            studente.aggiungiVoto(35); 
+        } catch (IllegalArgumentException e) {
+            System.out.println("Errore nell'aggiunta del voto: " + e.getMessage());
+        }
+
+        // Stampa i dettagli dello studente
+        studente.stampaDettagli();
     }
 }
 
