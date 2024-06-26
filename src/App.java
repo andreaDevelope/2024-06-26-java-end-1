@@ -7,7 +7,8 @@ public class App {
         // elencoTelefonico();
         // sistemaDiVotazione();
         // SistemadiPrenotazioneHotel();
-        impiegato_Manager();
+        // impiegato_Manager();
+        // sistemaDiPrenotazioneAlberghiera();
     }
 
     public static void presentazione() throws Exception {
@@ -227,7 +228,30 @@ public class App {
             System.out.println(impiegato);
         }
     }
+
+    public static void sistemaDiPrenotazioneAlberghiera(){
+        SistemaPrenotazioneAlberghiera sistema = new SistemaPrenotazioneAlberghiera();
+
+        CameraAlbergo singola1 = new CameraSingola(666);
+        CameraAlbergo doppia1 = new CameraDoppia(777);
+        CameraAlbergo suite1 = new Suite(123);
+
+        try {
+            sistema.aggiungiCamera(singola1);
+            sistema.aggiungiCamera(doppia1);
+            sistema.aggiungiCamera(suite1);
+
+            sistema.stampaCamereDisponibili();
+
+            sistema.rimuoviCamera(doppia1);
+
+            sistema.stampaCamereDisponibili();
+        } catch (Exception e) {
+            System.out.println("Errore nella gestione delle camere: " + e.getMessage());
+        }
+    }
 }
+
 
 
 
